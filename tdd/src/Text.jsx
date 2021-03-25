@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const Text = ({ string }) => <div>{string}</div>;
+import { getToDoItems } from './api-client/apis';
 
-export default Text;
+const Text = ({ string }) => <div>{string}</div>;
 
 const SayHelloOnButtonClick = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -12,7 +12,21 @@ const SayHelloOnButtonClick = () => {
       <button onClick={() => setIsClicked(true)}>Click me!</button>
       {isClicked && <Text string="hello" />}
     </>
-  )
+  );
 };
 
-export { SayHelloOnButtonClick };
+const CallApiOnButtonClick = () => {
+  const handleButtonClick = () => {
+    getToDoItems();
+  };
+
+  return (
+    <button onClick={handleButtonClick}>Click me!</button>
+  );
+};
+
+export {
+  Text,
+  SayHelloOnButtonClick,
+  CallApiOnButtonClick,
+};
